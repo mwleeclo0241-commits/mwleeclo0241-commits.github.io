@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   {% include head.html %}
 
   <body>
     {% include header.html %}
+
+    {% assign pc = site.data.categories | where: "slug", page.categories.first | first %}
 
     <div class="page-content">
       <div class="wrapper">
@@ -15,6 +17,10 @@
               {% include draft-banner.html %}
             {% endif %}
 
+            {% if pc %}
+              <a class="post-list-cat post-cat" href="{{ "/category/" | append: pc.slug | append: "/" | relative_url }}">{{ pc.name }}</a>
+            {% endif %}
+
             <h1 class="post-title">
             {% if page.headline_formatted_title %}
               {{ page.headline_formatted_title | newline_to_br }}
@@ -24,8 +30,11 @@
             </h1>
 
             {% if page.subtitle %}<h1 class="post-subtitle">{{ page.subtitle }}</h1>{% endif %}
-            <p class="post-meta"><span class="post-date">{{ page.date | date: "%B %-d, %Y" }}
+            <p class="post-meta"><span class="post-date">{{ page.date | date: "%Y년 %-m월 %-d일" }}
             </span>{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+            {% if page.tags.size > 0 %}
+              <p class="post-tags">{% for t in page.tags %}<span class="tag">#{{ t }}</span>{% endfor %}</p>
+            {% endif %}
           </header>
 
           <article class="post-content">
@@ -36,7 +45,12 @@
               {% include draft-banner.html %}
           {% endif %}
 
-      </div>
+          <nav class="post-pager">
+            {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% endif %}
+            {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+          </nav>
+
+        </div>
       </div>
     </div>
 
