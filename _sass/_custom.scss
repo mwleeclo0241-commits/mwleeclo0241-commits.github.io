@@ -1,0 +1,188 @@
+// 블로그 커스텀 스타일 (카테고리, 글 목록, 한글 폰트)
+@use "variables" as variables;
+@use "mixins" as mixins;
+
+$accent: #2a7ae2;
+$accent-soft: #eef4fd;
+$line: #e8e8e8;
+
+body {
+  font-family: Charter, Georgia, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  word-break: keep-all;
+}
+
+// 헤더: 이미지 로고 대신 텍스트 타이틀
+.site-title.text-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: variables.$color-text;
+  text-decoration: none;
+
+  &:hover { color: $accent; text-decoration: none; }
+}
+
+// 홈 히어로
+.hero {
+  padding: 20px 0 10px;
+
+  .hero-title { font-size: 28px; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .hero-sub { color: variables.$color-grey-dark; font-size: 15px; }
+}
+
+.section-heading {
+  font-size: 17px;
+  margin: 36px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid $line;
+}
+
+// 카테고리 카드 그리드
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 16px 0;
+
+  @include mixins.media-query(variables.$on-laptop) { grid-template-columns: repeat(2, 1fr); }
+  @include mixins.media-query(variables.$on-mobile) { grid-template-columns: 1fr; }
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid $line;
+  border-radius: 10px;
+  color: variables.$color-text;
+  text-decoration: none;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+
+  &:hover {
+    border-color: $accent;
+    box-shadow: 0 4px 14px rgba(42, 122, 226, .12);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .category-card-icon { font-size: 20px; }
+  .category-card-name { font-weight: 700; font-size: 15px; }
+  .category-card-desc { color: variables.$color-grey; font-size: 13px; line-height: 1.5; flex: 1; }
+  .category-card-count { color: $accent; font-size: 12px; margin-top: 6px; }
+}
+
+// 카테고리 칩
+.category-desc { color: variables.$color-grey-dark; margin-top: -6px; }
+
+.category-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 22px;
+}
+
+.category-chip {
+  padding: 4px 12px;
+  border: 1px solid $line;
+  border-radius: 999px;
+  font-size: 13px;
+  color: variables.$color-grey-dark;
+  text-decoration: none;
+
+  .count { color: variables.$color-grey; font-size: 11px; margin-left: 2px; }
+
+  &:hover { border-color: $accent; color: $accent; text-decoration: none; }
+
+  &.active {
+    background: $accent;
+    border-color: $accent;
+    color: #fff;
+    .count { color: rgba(255, 255, 255, .8); }
+  }
+}
+
+// 글 목록
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-list-item {
+  padding: 12px 0;
+  border-bottom: 1px solid $line;
+
+  &:last-child { border-bottom: none; }
+}
+
+.post-list-date {
+  display: inline-block;
+  width: 6.5em;
+  color: variables.$color-grey;
+  font-size: 13px;
+}
+
+.post-list-cat {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  background: $accent-soft;
+  color: $accent;
+  font-size: 12px;
+  text-decoration: none;
+
+  &:hover { text-decoration: none; background: $accent; color: #fff; }
+}
+
+.post-list-title {
+  font-size: 15px;
+  color: variables.$color-text;
+}
+
+.post-list-blurb {
+  margin: 4px 0 0 6.5em;
+  color: variables.$color-grey;
+  font-size: 13px;
+
+  @include mixins.media-query(variables.$on-mobile) { margin-left: 0; }
+}
+
+@include mixins.media-query(variables.$on-mobile) {
+  .post-list-date { display: block; width: auto; margin-bottom: 2px; }
+}
+
+.empty-state {
+  padding: 28px 0;
+  text-align: center;
+  color: variables.$color-grey;
+}
+
+.more-link { text-align: right; font-size: 14px; }
+
+// 글 상세
+.post-cat { margin-bottom: 6px; }
+
+.post-tags .tag {
+  margin-right: 8px;
+  color: variables.$color-grey;
+  font-size: 13px;
+}
+
+.post-content {
+  pre, code { font-family: "D2Coding", Menlo, Consolas, monospace; }
+  img { max-width: 100%; }
+}
+
+.post-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid $line;
+  font-size: 14px;
+
+  .next { margin-left: auto; text-align: right; }
+}
