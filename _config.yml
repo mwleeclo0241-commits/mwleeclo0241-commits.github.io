@@ -1,46 +1,46 @@
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# 이 파일을 바꾸면 'bundle exec jekyll serve'를 재시작해야 반영됩니다.
 
-title: Bay Jekyll Theme
-description: Bay is a minimal Jekyll Theme.
-baseurl: "/bay"
-url: "https://eliottvincent.github.io"
-og_image: /assets/img/profile-pic.jpg
-google_analytics: "UA-121636368-3"
+title: "Minwoo's Security Log"
+description: "개발 · CTF/Wargame · BugBounty · 기술문서 · 논문/컨퍼런스 · 공모전/자격증 기록"
+author: "이민우"
+
+# 저장소 이름을 mwleeclo0241-commits.github.io 로 바꾸면 아래 주소가 블로그 URL이 됩니다.
+# (GitHub Actions 배포 시 baseurl은 워크플로가 자동으로 넣어 주므로 비워 둡니다.)
+url: "https://mwleeclo0241-commits.github.io"
+baseurl: ""
+
+# 원작자(Bay)의 Google Analytics ID를 제거했습니다. 본인 GA4 ID가 생기면 넣으세요. 예: "G-XXXXXXX"
+google_analytics: ""
+
+timezone: Asia/Seoul
+permalink: /:categories/:year/:month/:day/:title/
 
 header:
   pages:
     - name: Home
       slug: /
-    - name: Work
     - name: Blog
+      slug: /blog/
+    - name: Category
+      slug: /category/
+    - name: About
+      slug: /about/
 
 footer:
   show_powered_by: true
   contact:
-    - type: email
-      name: Email
-      value: yourmail@domain.com
-    - type: wechat
-      value: YourWeChatUsername
-      link: "#"
-  follow:
-    - type: twitter
-      name: Twitter
-      link: http://twitter.com/YourTwitterUsername
-      username: "@YourTwitterUsername"
-    - type: facebook
-      name: Facebook
-      link: http://facebook.com/YourFacebookUsername
-    - type: linkedin
-      name: LinkedIn
-      link: http://linkedin.com/in/YourLinkedInUsername
     - type: github
       name: GitHub
-      link: http://github.com/YourGitHubUsername
-    - type: dribbble
-      name: Dribbble
-      link: https://dribbble.com/YourDribbbleUsername
+      value: mwleeclo0241-commits
+      link: https://github.com/mwleeclo0241-commits
+    # 이메일을 공개하려면 아래 주석을 풀고 주소를 넣으세요 (스팸 방지를 위해 자동으로 가려서 표시됩니다).
+    # - type: email
+    #   name: Email
+    #   value: your@email.com
+  follow:
+    - type: github
+      name: GitHub
+      link: https://github.com/mwleeclo0241-commits
     - type: rss
       name: RSS
       link: /feed.xml
@@ -64,6 +64,11 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - README.md
+  - CHANGELOG.md
+  - LICENSE.md
+  - bay_jekyll_theme.gemspec
+  - screenshot.png
 
 # Used for defeating caching
-version: 1
+version: 2
