@@ -1,0 +1,16 @@
+{%- comment -%}
+  카테고리 칩 목록. 사용법: {% include category-nav.html active="dev" %}
+  active가 비어 있으면 '전체'가 선택된 상태로 표시됩니다.
+{%- endcomment -%}
+{%- assign visible_posts = site.posts | where_exp: "p", "p.draft != true" -%}
+<nav class="category-nav" aria-label="카테고리">
+  <a class="category-chip{% unless include.active %} active{% endunless %}" href="{{ "/blog/" | relative_url }}">
+    전체 <span class="count">{{ visible_posts.size }}</span>
+  </a>
+  {%- for c in site.data.categories -%}
+    {%- assign c_posts = site.categories[c.slug] -%}
+    <a class="category-chip{% if include.active == c.slug %} active{% endif %}" href="{{ "/category/" | append: c.slug | append: "/" | relative_url }}">
+      {{ c.name }} <span class="count">{{ c_posts.size | default: 0 }}</span>
+    </a>
+  {%- endfor -%}
+</nav>
