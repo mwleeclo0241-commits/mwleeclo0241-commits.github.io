@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  {% include head.html %}
+
+  <body>
+    {% include header.html %}
+
+    {% assign cat = site.data.categories | where: "slug", page.category_slug | first %}
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="blog category-page">
+          <h1 class="page-heading">{{ cat.icon }} {{ cat.name }}</h1>
+          <p class="category-desc">{{ cat.desc }}</p>
+          {{ content }}
+
+          {% include category-nav.html active=cat.slug %}
+          {% assign cat_posts = site.categories[cat.slug] %}
+          {% include post-list.html posts=cat_posts %}
+        </div>
+      </div>
+    </div>
+
+    {% include footer.html %}
+    {% include foot.html %}
+  </body>
+</html>
