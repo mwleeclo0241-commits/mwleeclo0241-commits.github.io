@@ -1,0 +1,24 @@
+{%- comment -%}
+  글 목록. 사용법: {% include post-list.html posts=site.posts limit=5 %}
+{%- endcomment -%}
+{%- assign list_limit = include.limit | default: 9999 -%}
+{%- assign shown = 0 -%}
+<ul class="post-list">
+  {%- for post in include.posts -%}
+    {%- if post.draft != true and shown < list_limit -%}
+      {%- assign shown = shown | plus: 1 -%}
+      {%- assign pc = site.data.categories | where: "slug", post.categories.first | first -%}
+      <li class="post-list-item">
+        <span class="post-list-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+        {%- if pc -%}
+          <a class="post-list-cat" href="{{ "/category/" | append: pc.slug | append: "/" | relative_url }}">{{ pc.name }}</a>
+        {%- endif -%}
+        <a class="post-list-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        {%- if post.blurb -%}<p class="post-list-blurb">{{ post.blurb }}</p>{%- endif -%}
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>
+{%- if shown == 0 -%}
+  <p class="empty-state">아직 작성된 글이 없습니다. 첫 글을 기다리는 중이에요 ✍️</p>
+{%- endif -%}
