@@ -1,0 +1,30 @@
+# 카테고리 목록 — 글을 쓸 때 front matter에 `category: <slug>` 로 지정합니다.
+- slug: dev
+  name: 개발
+  icon: "</>"
+  desc: 프로젝트, 툴 제작, 코드 리뷰 등 개발 기록
+
+- slug: ctf-wargame
+  name: CTF/Wargame
+  icon: "🚩"
+  desc: CTF 대회 Write-up과 Dreamhack 등 워게임 풀이
+
+- slug: bugbounty
+  name: BugBounty
+  icon: "🐞"
+  desc: 버그바운티 참여 기록과 취약점 분석(공개 가능한 범위)
+
+- slug: tech-docs
+  name: 블로그/기술문서
+  icon: "📄"
+  desc: 공부한 기술 정리, 레퍼런스 번역, 기술 블로그 리뷰
+
+- slug: paper-conference
+  name: 논문/컨퍼런스
+  icon: "🎓"
+  desc: 보안 논문 리뷰와 컨퍼런스 발표 정리
+
+- slug: contest-cert
+  name: 공모전/자격증
+  icon: "🏆"
+  desc: 공모전 참가 후기와 자격증 준비·취득 기록
